@@ -293,6 +293,10 @@
       <p class="form-note">No spam. Just an early access invite when we launch.</p>
     </div>
 
+    <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:8px;">
+      <img src="headshot.jpeg" alt="Felipe Engineer-Manriquez" style="width:56px;height:56px;border-radius:50%;border:2px solid #004AAD;object-fit:cover;">
+      <span style="color:#ccc;font-size:0.85rem;letter-spacing:0.05em;">Felipe Engineer-Manriquez<br><span style="color:#888;font-size:0.75rem;">Founder, EBFC LLC</span></span>
+    </div>
     <p class="proof">
       From the team behind <strong>The EBFC Show</strong> and the <strong>EBFC Scrum Community of Practice</strong>
     </p>
@@ -310,11 +314,22 @@
   function handleSubmit(e) {
     e.preventDefault();
     const form = document.getElementById('waitlist');
-    const success = document.getElementById('success');
-    form.style.display = 'none';
-    success.style.display = 'block';
-    // Felipe: connect Formspree or your backend here
-    // fetch('https://formspree.io/f/YOUR_ID', { method: 'POST', body: new FormData(form) })
+    const email = form.querySelector('input').value;
+    const btn = form.querySelector('button');
+    btn.textContent = 'Joining...';
+    btn.disabled = true;
+    fetch('https://script.google.com/macros/s/AKfycbzQYLP3oh9b4EcgIdnkwoRHCSh4TlbgvBkKGz8ldwSn7HrYIoGITk1TZNtpUGhNxq0/exec', {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email })
+    }).then(() => {
+      form.style.display = 'none';
+      document.getElementById('success').style.display = 'block';
+    }).catch(() => {
+      form.style.display = 'none';
+      document.getElementById('success').style.display = 'block';
+    });
   }
 </script>
 
