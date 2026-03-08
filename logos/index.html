@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EBFC AI — Brand Assets</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #e0e0e0; padding: 2rem; }
+  h1 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.25rem; }
+  .subtitle { color: #888; font-size: 0.9rem; margin-bottom: 2rem; }
+  h2 { font-size: 1.1rem; font-weight: 500; color: #aaa; margin: 2rem 0 1rem; border-bottom: 1px solid #222; padding-bottom: 0.5rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem; }
+  .card { background: #fff; border-radius: 12px; padding: 1.5rem; text-align: center; transition: transform 0.15s; }
+  .card:hover { transform: scale(1.02); }
+  .card img { max-width: 100%; height: 160px; object-fit: contain; cursor: pointer; }
+  .card.header img { height: 60px; }
+  .card .name { color: #333; font-size: 0.85rem; font-weight: 500; margin-top: 0.75rem; }
+  .card .url { color: #888; font-size: 0.7rem; margin-top: 0.25rem; word-break: break-all; cursor: pointer; }
+  .card .url:hover { color: #4a90d9; }
+  .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%); background: #333; color: #fff; padding: 0.75rem 1.5rem; border-radius: 8px; font-size: 0.85rem; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+  .toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+<h1>EBFC AI — Brand Assets</h1>
+<p class="subtitle">Click image to open full size · Click URL to copy to clipboard</p>
+
+<h2>Square Logos (1024 × 1024)</h2>
+<div class="grid">
+  <div class="card">
+    <a href="monogram.png" target="_blank"><img src="monogram.png" alt="Monogram"></a>
+    <div class="name">Monogram (Grid)</div>
+    <div class="url" onclick="copyUrl('monogram.png')">logos/monogram.png</div>
+  </div>
+  <div class="card">
+    <a href="shield.png" target="_blank"><img src="shield.png" alt="Shield"></a>
+    <div class="name">Shield / Crest</div>
+    <div class="url" onclick="copyUrl('shield.png')">logos/shield.png</div>
+  </div>
+  <div class="card">
+    <a href="minimal-mark.png" target="_blank"><img src="minimal-mark.png" alt="Minimal Mark"></a>
+    <div class="name">Minimal Mark</div>
+    <div class="url" onclick="copyUrl('minimal-mark.png')">logos/minimal-mark.png</div>
+  </div>
+  <div class="card">
+    <a href="bold-block.png" target="_blank"><img src="bold-block.png" alt="Bold Block"></a>
+    <div class="name">Bold Block</div>
+    <div class="url" onclick="copyUrl('bold-block.png')">logos/bold-block.png</div>
+  </div>
+  <div class="card">
+    <a href="wordmark.png" target="_blank"><img src="wordmark.png" alt="Wordmark"></a>
+    <div class="name">Wordmark</div>
+    <div class="url" onclick="copyUrl('wordmark.png')">logos/wordmark.png</div>
+  </div>
+</div>
+
+<h2>Header Logos (300 × 80)</h2>
+<div class="grid">
+  <div class="card header">
+    <a href="monogram-header.png" target="_blank"><img src="monogram-header.png" alt="Monogram Header"></a>
+    <div class="name">Monogram Header</div>
+    <div class="url" onclick="copyUrl('monogram-header.png')">logos/monogram-header.png</div>
+  </div>
+  <div class="card header">
+    <a href="shield-header.png" target="_blank"><img src="shield-header.png" alt="Shield Header"></a>
+    <div class="name">Shield Header</div>
+    <div class="url" onclick="copyUrl('shield-header.png')">logos/shield-header.png</div>
+  </div>
+  <div class="card header">
+    <a href="minimal-mark-header.png" target="_blank"><img src="minimal-mark-header.png" alt="Minimal Mark Header"></a>
+    <div class="name">Minimal Mark Header</div>
+    <div class="url" onclick="copyUrl('minimal-mark-header.png')">logos/minimal-mark-header.png</div>
+  </div>
+  <div class="card header">
+    <a href="bold-block-header.png" target="_blank"><img src="bold-block-header.png" alt="Bold Block Header"></a>
+    <div class="name">Bold Block Header</div>
+    <div class="url" onclick="copyUrl('bold-block-header.png')">logos/bold-block-header.png</div>
+  </div>
+  <div class="card header">
+    <a href="wordmark-header.png" target="_blank"><img src="wordmark-header.png" alt="Wordmark Header"></a>
+    <div class="name">Wordmark Header</div>
+    <div class="url" onclick="copyUrl('wordmark-header.png')">logos/wordmark-header.png</div>
+  </div>
+</div>
+
+<div class="toast" id="toast">Copied!</div>
+
+<script>
+const BASE = window.location.origin + '/logos/';
+function copyUrl(file) {
+  navigator.clipboard.writeText(BASE + file).then(() => {
+    const t = document.getElementById('toast');
+    t.textContent = 'Copied: ' + BASE + file;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2000);
+  });
+}
+</script>
+</body>
+</html>
