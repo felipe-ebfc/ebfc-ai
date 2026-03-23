@@ -266,7 +266,7 @@
     }
     .product-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.25rem;
     }
     .product-card {
@@ -296,6 +296,10 @@
     }
     .status-live {
       color: #0D0D0F; background: var(--gold);
+    }
+    .status-free {
+      color: #0D0D0F;
+      background: var(--blue-lt);
     }
     .status-beta {
       color: var(--blue-lt);
@@ -487,6 +491,7 @@
       .product-grid {
         grid-template-columns: 1fr;
       }
+      .products-section { max-width: 480px; }
       .form-row { flex-direction: column; }
       .btn-blue, .btn-gold { width: 100%; padding: 0.75rem; text-align: center; }
       footer { padding: 0.85rem 1.25rem; flex-wrap: wrap; gap: 0.5rem; }
@@ -579,6 +584,16 @@
         <a href="https://ppc.ebfc.ai" class="btn-outline btn-outline-gold">Get Started Free →</a>
       </div>
 
+      <!-- Burndown Card -->
+      <div class="product-card">
+        <span class="card-status status-free">Free</span>
+        <h3>Sprint Burndown</h3>
+        <p class="card-desc">
+          Track your sprint. Tell your story. Burndown chart, velocity tracking, and PPC% — built for Scrum teams in construction.
+        </p>
+        <a href="https://burndown.ebfc.ai" class="btn-outline btn-outline-gold">Start Tracking →</a>
+      </div>
+
       <!-- Companion Card -->
       <div class="product-card coming-soon">
         <span class="card-status status-beta">Early Access</span>
@@ -644,6 +659,7 @@
   <span class="footer-brand">EBFC LLC · ebfc.ai</span>
   <div class="footer-links">
     <a href="https://ppc.ebfc.ai">PPC Coach</a>
+    <a href="https://burndown.ebfc.ai">Burndown</a>
     <a href="mailto:felipe@ebfc.ai">felipe@ebfc.ai</a>
   </div>
 </footer>
