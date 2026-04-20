@@ -45,6 +45,10 @@
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  /* Read-from-afar base: root scaled 16→22px (~+37%, two steps up). All rem sizes inherit. */
+  html { font-size: 22px; }
+  @media (max-width: 640px) { html { font-size: 18px; } }
+
   body {
     background: var(--bg);
     color: var(--white);
@@ -59,18 +63,26 @@
   .back-link {
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
-    font-size: 0.75rem;
-    font-weight: 500;
+    gap: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--gray);
+    color: var(--blue-lt);
     text-decoration: none;
-    margin-bottom: 1.5rem;
-    transition: color 0.15s;
+    margin-bottom: 1.75rem;
+    padding: 0.45rem 0.85rem 0.45rem 0.7rem;
+    border: 1px solid rgba(26,111,224,0.3);
+    border-radius: 100px;
+    background: rgba(26,111,224,0.08);
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
   }
-  .back-link:hover { color: var(--blue-lt); }
-  .back-link .arrow { font-family: var(--font-d); font-size: 0.95rem; line-height: 1; }
+  .back-link:hover {
+    color: var(--white);
+    background: rgba(26,111,224,0.18);
+    border-color: rgba(26,111,224,0.55);
+  }
+  .back-link .arrow { font-family: var(--font-d); font-size: 1.15rem; line-height: 1; }
 
   /* ── Header ── */
   .header {
