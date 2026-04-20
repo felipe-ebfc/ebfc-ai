@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Deployment Playbook — EBFC AI</title>
+<meta name="description" content="The 4-step playbook for construction professionals: stop fighting chatbots, build a workspace your AI reads every session. Free downloads — no email required.">
+<meta name="author" content="Felipe Engineer-Manriquez">
+<link rel="canonical" href="https://www.ebfc.ai/playbook">
+<link rel="icon" href="/og-image.png" type="image/png">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI Deployment Playbook — EBFC AI">
+<meta property="og:description" content="The 4-step playbook for construction professionals: stop fighting chatbots, build a workspace your AI reads every session.">
+<meta property="og:url" content="https://www.ebfc.ai/playbook">
+<meta property="og:image" content="https://www.ebfc.ai/og-image.png">
+<meta property="og:site_name" content="EBFC AI">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Deployment Playbook — EBFC AI">
+<meta name="twitter:description" content="The 4-step playbook for construction professionals. Free downloads, no email required.">
+<meta name="twitter:image" content="https://www.ebfc.ai/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:      #0D0D0F;
+    --surface: #13131A;
+    --border:  #1E1E2A;
+    --blue:    #004AAD;
+    --blue-lt: #1A6FE0;
+    --gold:    #D4A827;
+    --gold-lt: #F0C847;
+    --white:   #F5F5F7;
+    --gray:    #8A8A9A;
+    --red:     #E74C3C;
+    --green:   #27AE60;
+    --font-d:  'Bebas Neue', sans-serif;
+    --font-b:  'Space Grotesk', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* Read-from-afar base: root scaled 16→22px (~+37%, two steps up). All rem sizes inherit. */
+  html { font-size: 22px; }
+  @media (max-width: 640px) { html { font-size: 18px; } }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: var(--font-b);
+    min-height: 100vh;
+    padding: 2rem 1rem 5rem;
+  }
+
+  .page { max-width: 900px; margin: 0 auto; }
+
+  /* ── Back link ── */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--blue-lt);
+    text-decoration: none;
+    margin-bottom: 1.75rem;
+    padding: 0.45rem 0.85rem 0.45rem 0.7rem;
+    border: 1px solid rgba(26,111,224,0.3);
+    border-radius: 100px;
+    background: rgba(26,111,224,0.08);
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+  }
+  .back-link:hover {
+    color: var(--white);
+    background: rgba(26,111,224,0.18);
+    border-color: rgba(26,111,224,0.55);
+  }
+  .back-link .arrow { font-family: var(--font-d); font-size: 1.15rem; line-height: 1; }
+
+  /* ── Header ── */
+  .header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .header-text .eyebrow {
+    font-family: var(--font-b);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+  .header-text h1 {
+    font-family: var(--font-d);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: var(--white);
+  }
+  .header-text h1 .accent { color: var(--blue-lt); }
+  .header-text h1 .gold   { color: var(--gold); }
+  .header-text .sub {
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+    color: var(--gray);
+  }
+  .brand-mark { text-align: right; flex-shrink: 0; }
+  .brand-mark .logo {
+    font-family: var(--font-d);
+    font-size: 1.8rem;
+    letter-spacing: 0.1em;
+    color: var(--white);
+  }
+  .brand-mark .logo span { color: var(--gold); }
+  .brand-mark .site { font-size: 0.78rem; color: var(--gray); margin-top: 0.2rem; }
+
+  /* ── Section label ── */
+  .section-label {
+    font-family: var(--font-b);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--blue-lt);
+    margin-bottom: 1rem;
+  }
+
+  /* ── Key callout ── */
+  .callout {
+    background: linear-gradient(135deg, rgba(0,74,173,0.15), rgba(212,168,39,0.08));
+    border: 1px solid rgba(26,111,224,0.3);
+    border-left: 4px solid var(--gold);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .callout-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+  .callout-text {
+    font-family: var(--font-d);
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    letter-spacing: 0.04em;
+    color: var(--white);
+    line-height: 1.1;
+  }
+  .callout-sub {
+    font-size: 0.9rem;
+    color: var(--gray);
+    margin-top: 0.5rem;
+    line-height: 1.5;
+  }
+
+  /* ── Chatbot vs Workspace comparison ── */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .compare-card {
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+  }
+  .compare-card.before {
+    background: rgba(231,76,60,0.06);
+    border: 1px solid rgba(231,76,60,0.25);
+  }
+  .compare-card.after {
+    background: rgba(26,111,224,0.06);
+    border: 1px solid rgba(26,111,224,0.3);
+  }
+  .compare-label {
+    font-family: var(--font-d);
+    font-size: 0.9rem;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.6rem;
+  }
+  .compare-card.before .compare-label { color: var(--red); }
+  .compare-card.after  .compare-label { color: var(--blue-lt); }
+  .compare-body {
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: #C0C0D0;
+  }
+  .compare-body em { color: var(--gray); font-style: italic; }
+  .compare-card.after .compare-body em { color: var(--blue-lt); }
+
+  /* ── Folder structure ── */
+  .folder-row {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+  .folder-pill {
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.35rem 0.9rem;
+    border-radius: 6px;
+  }
+  .folder-pill.blue {
+    background: rgba(26,111,224,0.12);
+    border: 1px solid rgba(26,111,224,0.3);
+    color: var(--blue-lt);
+  }
+  .folder-pill.gold {
+    background: rgba(212,168,39,0.12);
+    border: 1px solid rgba(212,168,39,0.3);
+    color: var(--gold-lt);
+  }
+
+  /* ── Steps grid ── */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .step-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .step-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--blue-lt);
+    border-radius: 12px 0 0 12px;
+  }
+  .step-card.gold-accent::before { background: var(--gold); }
+
+  .step-num {
+    font-family: var(--font-d);
+    font-size: 3.5rem;
+    line-height: 1;
+    color: var(--blue-lt);
+    opacity: 0.2;
+    position: absolute;
+    top: 1rem; right: 1.25rem;
+  }
+  .step-card.gold-accent .step-num { color: var(--gold); }
+
+  .step-tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--blue-lt);
+    background: rgba(26,111,224,0.12);
+    border-radius: 4px;
+    padding: 0.2rem 0.5rem;
+    margin-bottom: 0.6rem;
+  }
+  .step-card.gold-accent .step-tag {
+    color: var(--gold);
+    background: rgba(212,168,39,0.12);
+  }
+  .step-title {
+    font-family: var(--font-d);
+    font-size: 1.5rem;
+    letter-spacing: 0.04em;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+  .step-body {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #C0C0D0;
+    margin-bottom: 1rem;
+  }
+  .step-actions {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .step-actions li {
+    font-size: 0.85rem;
+    color: var(--white);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .step-actions li::before {
+    content: '→';
+    color: var(--blue-lt);
+    flex-shrink: 0;
+    margin-top: 0.05em;
+  }
+  .step-card.gold-accent .step-actions li::before { color: var(--gold); }
+
+  /* ── Workspace formula quick reference ── */
+  .formula-section { margin-bottom: 2rem; }
+  .formula-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.75rem;
+  }
+  .formula-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .f-num {
+    font-family: var(--font-d);
+    font-size: 2rem;
+    color: var(--gold);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .f-text { font-size: 0.9rem; font-weight: 600; color: var(--white); line-height: 1.3; }
+  .f-sub  { font-size: 0.75rem; color: var(--gray); margin-top: 0.2rem; font-weight: 400; }
+
+  /* ── Divider ── */
+  .divider { height: 1px; background: var(--border); margin: 2rem 0; }
+
+  /* ── Footer ── */
+  .footer {
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .footer-contact { font-size: 0.85rem; color: var(--gray); line-height: 1.7; }
+  .footer-contact a { color: var(--gold-lt); text-decoration: none; }
+  .footer-follow {
+    text-align: right;
+    font-size: 0.85rem;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+  .footer-follow .handle {
+    font-family: var(--font-d);
+    font-size: 1.2rem;
+    color: var(--gold-lt);
+    letter-spacing: 0.06em;
+    display: block;
+  }
+
+  /* ── Take-home CTA section ── */
+  .cta-section {
+    margin: 2.5rem 0 0;
+    padding: 2rem 2rem 2.25rem;
+    background: linear-gradient(135deg, rgba(0,74,173,0.1) 0%, rgba(212,168,39,0.06) 100%);
+    border: 1px solid rgba(26,111,224,0.22);
+    border-radius: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--blue-lt), var(--gold));
+    border-radius: 14px 14px 0 0;
+  }
+  .cta-eyebrow {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--blue-lt);
+    margin-bottom: 0.35rem;
+  }
+  .cta-heading {
+    font-family: var(--font-d);
+    font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+    letter-spacing: 0.03em;
+    color: var(--white);
+    margin-bottom: 0.4rem;
+    line-height: 1.05;
+  }
+  .cta-sub {
+    font-size: 0.88rem;
+    color: var(--gray);
+    margin-bottom: 1.75rem;
+    line-height: 1.55;
+  }
+  .cta-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .cta-card {
+    background: var(--surface);
+    border-radius: 10px;
+    padding: 1.25rem 1.35rem 1.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border: 1px solid var(--border);
+    transition: border-color 0.2s;
+  }
+  .cta-card:hover { border-color: rgba(26,111,224,0.4); }
+  .cta-card.featured { border-color: rgba(212,168,39,0.3); }
+  .cta-card.featured:hover { border-color: rgba(212,168,39,0.6); }
+  .cta-card-icon { font-size: 1.5rem; line-height: 1; margin-bottom: 0.1rem; }
+  .cta-card-title {
+    font-family: var(--font-d);
+    font-size: 1.15rem;
+    letter-spacing: 0.04em;
+    color: var(--white);
+  }
+  .cta-card-desc {
+    font-size: 0.8rem;
+    color: var(--gray);
+    line-height: 1.5;
+    flex: 1;
+  }
+  .dl-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 0.75rem;
+    padding: 0.6rem 1.1rem;
+    border-radius: 7px;
+    font-family: var(--font-b);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: opacity 0.15s, transform 0.1s;
+    cursor: pointer;
+    border: none;
+    width: fit-content;
+  }
+  .dl-btn:hover  { opacity: 0.88; transform: translateY(-1px); }
+  .dl-btn:active { transform: translateY(0); }
+  .dl-btn.blue {
+    background: var(--blue);
+    color: var(--white);
+    box-shadow: 0 3px 14px rgba(0,74,173,0.35);
+  }
+  .dl-btn.gold {
+    background: var(--gold);
+    color: #0D0D0F;
+    box-shadow: 0 3px 14px rgba(212,168,39,0.35);
+  }
+  .cta-trust {
+    font-size: 0.75rem;
+    color: var(--gray);
+    text-align: center;
+    letter-spacing: 0.03em;
+    opacity: 0.75;
+  }
+  .cta-trust span { color: var(--blue-lt); font-weight: 600; }
+
+  /* ── Print styles ── */
+  @media print {
+    :root {
+      --bg:      #ffffff;
+      --surface: #f4f4f6;
+      --border:  #d0d0d8;
+      --blue:    #004AAD;
+      --blue-lt: #1A6FE0;
+      --gold:    #B8860B;
+      --gold-lt: #C89B10;
+      --white:   #111111;
+      --gray:    #555566;
+      --red:     #c0392b;
+      --green:   #1e8449;
+    }
+    body { background: #fff; color: #111; padding: 0; }
+    .print-bar { display: none; }
+    .page { max-width: 100%; }
+    .step-card, .formula-item, .callout, .compare-card { break-inside: avoid; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .compare { grid-template-columns: 1fr 1fr; }
+    a { color: var(--blue) !important; }
+  }
+
+  @media (max-width: 640px) {
+    .steps { grid-template-columns: 1fr; }
+    .compare { grid-template-columns: 1fr; }
+    .formula-grid { grid-template-columns: 1fr 1fr; }
+    .cta-cards { grid-template-columns: 1fr; }
+    .header { flex-direction: column; }
+    .brand-mark { text-align: left; }
+    .footer { flex-direction: column; }
+    .footer-follow { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <a href="https://www.ebfc.ai" class="back-link"><span class="arrow">←</span> ebfc.ai</a>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-text">
+      <p class="eyebrow">Day 2 Closing Keynote · CONSTRUCT 2026</p>
+      <h1>From <span class="accent">Chatbot</span> to<br><span class="gold">Construction Companion</span></h1>
+      <p class="sub">AI Deployment Playbook · Felipe Engineer-Manriquez · EBFC AI</p>
+    </div>
+    <div class="brand-mark">
+      <div class="logo">EBFC<span>.AI</span></div>
+      <div class="site">ebfc.ai</div>
+    </div>
+  </header>
+
+  <!-- Core Insight -->
+  <div class="callout">
+    <div class="callout-label">The Core Insight</div>
+    <div class="callout-text">Build a workspace, not a chat habit.</div>
+    <div class="callout-sub">The problem isn't the model — it's the method. Every time you open a new chat window you start over: re-explain your role, re-paste your project context, edit out the robot-speak. A workspace folder fixes that permanently. You build it once. The AI reads it every session. The folder is the system.</div>
+  </div>
+
+  <!-- Chatbot vs. Workspace -->
+  <p class="section-label">Chatbot vs. Workspace — The Difference</p>
+  <div class="compare">
+    <div class="compare-card before">
+      <div class="compare-label">❌ Chatbot Loop</div>
+      <div class="compare-body">
+        Open new chat → explain your role again → paste your project context again → get generic answer → edit out the robot-speak → close tab.<br><br>
+        <em>Repeat every single session. Forever.</em>
+      </div>
+    </div>
+    <div class="compare-card after">
+      <div class="compare-label">✓ Workspace</div>
+      <div class="compare-body">
+        Open workspace → AI already knows your role, your project, your tone, and what good output looks like → first draft sounds like you wrote it.<br><br>
+        <em>Same model. Better method. Built once, runs forever.</em>
+      </div>
+    </div>
+  </div>
+
+  <!-- Folder structure pills -->
+  <div class="folder-row">
+    <span class="folder-pill blue">📁 SKILL.md — your role &amp; rules</span>
+    <span class="folder-pill blue">📁 references/ — what to avoid</span>
+    <span class="folder-pill gold">📁 examples/ — what good looks like</span>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Steps -->
+  <p class="section-label">Your 4-Step Deployment Plan</p>
+  <div class="steps">
+
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <span class="step-tag">Day 1</span>
+      <div class="step-title">Pick One Repetitive Task</div>
+      <div class="step-body">Start narrow. Find the task that eats 30–60 min/day and produces forgettable output — daily reports, RFI responses, coordination emails. That's your proving ground.</div>
+      <ul class="step-actions">
+        <li>Must be text-based and currently done by hand</li>
+        <li>Daily reports, RFI drafts, meeting recaps</li>
+        <li>Subcontractor coordination emails</li>
+        <li>Safety observation write-ups</li>
+      </ul>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <span class="step-tag">Day 2–3</span>
+      <div class="step-title">Build Your Workspace Folder</div>
+      <div class="step-body">Create a folder — local or cloud — with three files. This is the memory you give AI. It turns a generic chatbot into your construction companion without re-explaining anything.</div>
+      <ul class="step-actions">
+        <li>SKILL.md — your role, project, team, communication tone</li>
+        <li>references/ — phrases to avoid, patterns that sound robotic</li>
+        <li>examples/ — one good RFI, one clean report, one email that landed</li>
+        <li>Point your AI tool at this folder once. Done.</li>
+      </ul>
+    </div>
+
+    <div class="step-card gold-accent">
+      <div class="step-num">3</div>
+      <span class="step-tag">Day 4–5</span>
+      <div class="step-title">Build Your Prompt Process as a .md File</div>
+      <div class="step-body">Document the exact steps you follow to get a good output for your chosen task. Save it as a Markdown file in your workspace. Now anyone on your team can run it in 60 seconds.</div>
+      <ul class="step-actions">
+        <li>Format: Role → Context → Raw Input → Output Format</li>
+        <li>Name it by task: daily-report.md, rfi-draft.md</li>
+        <li>Drop it in your workspace folder — AI reads it automatically</li>
+        <li>Refine it when outputs need adjustment — the file is the system</li>
+      </ul>
+    </div>
+
+    <div class="step-card gold-accent">
+      <div class="step-num">4</div>
+      <span class="step-tag">Week 2 → Ongoing</span>
+      <div class="step-title">Run 2 Weeks, Edit Outputs, Refine</div>
+      <div class="step-body">AI output is a first draft, not a final one. Edit like a superintendent reviews a punchlist — inspect the work, then fix the .md file so the same mistake doesn't come back.</div>
+      <ul class="step-actions">
+        <li>Run your prompt process every day for 2 weeks</li>
+        <li>Track your edits — patterns in your fixes = prompt improvements</li>
+        <li>Update SKILL.md with anything you keep having to correct</li>
+        <li>Share the folder with your team — they inherit your system, not your effort</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Workspace Formula Quick Reference -->
+  <div class="formula-section">
+    <p class="section-label">The Workspace Formula — Quick Reference</p>
+    <div class="formula-grid">
+      <div class="formula-item">
+        <div class="f-num">1</div>
+        <div>
+          <div class="f-text">Start a folder</div>
+          <div class="f-sub">One place: role, project, rules</div>
+        </div>
+      </div>
+      <div class="formula-item">
+        <div class="f-num">2</div>
+        <div>
+          <div class="f-text">Write your rules</div>
+          <div class="f-sub">Save as SKILL.md in the folder</div>
+        </div>
+      </div>
+      <div class="formula-item">
+        <div class="f-num">3</div>
+        <div>
+          <div class="f-text">Add examples</div>
+          <div class="f-sub">One good RFI, report, email</div>
+        </div>
+      </div>
+      <div class="formula-item">
+        <div class="f-num">4</div>
+        <div>
+          <div class="f-text">Let it work</div>
+          <div class="f-sub">AI reads the folder every session</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Take-home CTA -->
+  <div class="cta-section">
+    <p class="cta-eyebrow">From EBFC AI · For You</p>
+    <h2 class="cta-heading">Two files. Everything you need to start Monday.</h2>
+    <p class="cta-sub">No email required. No account. Open either file in any app — or paste the prompt directly into Claude or ChatGPT right now.</p>
+
+    <div class="cta-cards">
+
+      <div class="cta-card">
+        <div class="cta-card-icon">📋</div>
+        <div class="cta-card-title">The Playbook</div>
+        <div class="cta-card-desc">The full 4-step workspace system as a Markdown file. Works in Notion, Obsidian, VS Code, Apple Notes — any app that reads text. Your reference as you build.</div>
+        <a class="dl-btn blue" href="./EBFC-AI-Playbook.md" download="EBFC-AI-Playbook.md">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 1v8M3 6.5l3.5 3.5 3.5-3.5"/><path d="M1 11h11"/></svg>
+          Download the Playbook
+        </a>
+      </div>
+
+      <div class="cta-card featured">
+        <div class="cta-card-icon">⚡</div>
+        <div class="cta-card-title">Your Construction AI Prompt</div>
+        <div class="cta-card-desc">Open this file, copy everything, paste into Claude or ChatGPT. Your AI writes like a field professional from the first message. No setup. Works right now.</div>
+        <a class="dl-btn gold" href="./EBFC-AI-Construction-Prompt.md" download="EBFC-AI-Construction-Prompt.md">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 1v8M3 6.5l3.5 3.5 3.5-3.5"/><path d="M1 11h11"/></svg>
+          Get the AI Prompt
+        </a>
+      </div>
+
+    </div>
+
+    <p class="cta-trust">No email gate. No follow-up sequence. Just the files. &nbsp;·&nbsp; <span>EBFC AI</span> &nbsp;·&nbsp; ebfc.ai</p>
+    <p class="cta-trust" style="margin-top:0.75rem;">Want the full companion that ships with this built in? &nbsp;<a href="https://www.ebfc.ai" style="color:var(--gold-lt);text-decoration:none;font-weight:600;">Join the EBFC&nbsp;AI waitlist →</a></p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-contact">
+      <strong style="color:var(--white)">Felipe Engineer-Manriquez</strong><br>
+      Chief Engineer · EBFC AI<br>
+      <a href="mailto:felipe@ebfc.ai">felipe@ebfc.ai</a> &nbsp;·&nbsp;
+      <a href="https://www.ebfc.ai" target="_blank">ebfc.ai</a>
+    </div>
+    <div class="footer-follow">
+      Follow for more
+      <span class="handle">@FelipeEngineer</span>
+      Full workspace template at <a href="https://www.ebfc.ai" target="_blank" style="color:var(--gold-lt)">ebfc.ai</a>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>

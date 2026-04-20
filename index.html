@@ -459,7 +459,23 @@
     }
     footer a:hover { color: var(--gray); }
     .footer-links {
-      display: flex; gap: 1.25rem;
+      display: flex; align-items: center; gap: 1.25rem;
+    }
+    .footer-links .pill {
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--blue-lt);
+      padding: 0.4rem 0.85rem;
+      border-radius: 100px;
+      border: 1px solid rgba(26,111,224,0.35);
+      background: rgba(0,74,173,0.1);
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .footer-links .pill:hover {
+      color: var(--white);
+      background: rgba(0,74,173,0.22);
+      border-color: var(--blue-lt);
     }
 
     /* ── DIVIDER ── */
@@ -658,6 +674,7 @@
 <footer>
   <span class="footer-brand">EBFC LLC · ebfc.ai</span>
   <div class="footer-links">
+    <a href="/playbook" class="pill">Construction AI Playbook →</a>
     <a href="https://ppc.ebfc.ai">PPC Coach</a>
     <a href="https://burndown.ebfc.ai">Burndown</a>
     <a href="mailto:felipe@ebfc.ai">felipe@ebfc.ai</a>
