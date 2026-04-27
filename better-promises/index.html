@@ -66,11 +66,12 @@
 
 /* ---------- Reset / base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
+/* Read-from-afar base: root scaled 16→22px (~+37%). All rem sizes inherit. */
+html { font-size: 22px; -webkit-text-size-adjust: 100%; }
+@media (max-width: 640px) { html { font-size: 18px; } }
 body {
   margin: 0;
-  font-family: var(--font-body);
-  font-size: 17px;
+  font-family: var(--font-b);
   line-height: 1.6;
   color: var(--body);
   background: var(--bg);
@@ -469,37 +470,35 @@ h2 {
 footer {
   border-top: 1px solid var(--border);
   margin-top: 4rem;
-  padding: 2.5rem 0 3rem;
-  font-size: 0.95rem;
-  color: var(--muted);
+  padding: 1.5rem 0 3rem;
+}
+footer .wrap {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
 }
-footer p { max-width: none; margin: 0 0 0.5rem 0; }
-footer .credits strong { color: var(--ink); font-weight: 700; }
-footer .footer-follow {
+.footer-contact {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.footer-contact a { color: var(--gold-lt); text-decoration: none; }
+.footer-contact a:hover { color: var(--blue-lt); }
+.footer-follow {
   text-align: right;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   color: var(--muted);
   line-height: 1.6;
 }
-footer .footer-follow .handle {
+.footer-follow .handle {
   font-family: var(--font-d);
   font-size: 1.2rem;
   color: var(--gold-lt);
   letter-spacing: 0.06em;
   display: block;
 }
-footer .free {
-  margin-top: 1.5rem;
-  font-style: italic;
-  color: var(--ink-soft);
-}
-footer a { color: var(--gold-lt); text-decoration: none; }
-footer a:hover { color: var(--blue-lt); }
 
 /* ---------- Animations ---------- */
 @keyframes fadeUp {
@@ -678,14 +677,15 @@ footer a:hover { color: var(--blue-lt); }
 
 <footer>
   <div class="wrap">
-    <div class="credits">
-      <p><strong>Felipe Engineer-Manriquez</strong><br>
+    <div class="footer-contact">
+      <strong style="color:var(--ink)">Felipe Engineer-Manriquez</strong><br>
       Chief Engineer · EBFC AI<br>
-      <a href="mailto:felipe@ebfc.ai">felipe@ebfc.ai</a> · <a href="https://www.ebfc.ai">ebfc.ai</a></p>
+      <a href="mailto:felipe@ebfc.ai">felipe@ebfc.ai</a> &nbsp;·&nbsp;
+      <a href="https://www.ebfc.ai">ebfc.ai</a>
     </div>
     <div class="footer-follow">
       Connect with me at
-      <a href="https://felipe.engineer/" style="color:var(--gold-lt);text-decoration:none;"><span class="handle">felipe.engineer</span></a>
+      <a href="https://felipe.engineer/" target="_blank" style="color:var(--gold-lt);text-decoration:none;"><span class="handle">felipe.engineer</span></a>
     </div>
   </div>
 </footer>
