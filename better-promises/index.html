@@ -403,76 +403,125 @@ h2 {
   text-decoration-color: rgba(248,113,113,0.7);
 }
 
-/* ---------- Downloads ---------- */
-.downloads {
+/* ---------- CTA / Downloads ---------- */
+.cta-section {
+  margin: 2.5rem 0 0;
+  padding: 2rem 2rem 2.25rem;
+  background: linear-gradient(135deg, rgba(0,74,173,0.1) 0%, rgba(212,168,39,0.06) 100%);
+  border: 1px solid rgba(26,111,224,0.22);
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--blue-lt), var(--gold));
+  border-radius: 14px 14px 0 0;
+}
+.cta-eyebrow {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.cta-heading {
+  font-family: var(--font-d);
+  font-size: clamp(1.7rem, 3vw, 2.2rem);
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+.cta-sub {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: 1.5rem;
+}
+.cta-cards {
   display: grid;
   gap: 1rem;
-  grid-template-columns: 1fr;
-  margin: 1.5rem 0 0;
+  grid-template-columns: 1fr 1fr;
 }
-@media (min-width: 768px) {
-  .downloads { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 640px) {
+  .cta-cards { grid-template-columns: 1fr; }
 }
-.dl-card {
-  display: block;
-  text-decoration: none;
-  color: inherit;
+.cta-card {
   background: var(--surface);
+  border-radius: 10px;
+  padding: 1.25rem 1.35rem 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 1.5rem;
-  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: border-color 0.2s;
 }
-.dl-card:hover {
-  border-color: var(--blue-lt);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 32px rgba(30,109,217,0.15);
-}
-.dl-card .icon {
-  font-size: 1.75rem;
-  display: block;
-  margin-bottom: 0.75rem;
-  line-height: 1;
-}
-.dl-card .kind {
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--muted);
-  margin-bottom: 0.35rem;
-}
-.dl-card .title {
+.cta-card:hover { border-color: rgba(30,109,217,0.4); }
+.cta-card.featured { border-color: rgba(212,168,39,0.3); }
+.cta-card.featured:hover { border-color: rgba(212,168,39,0.6); }
+.cta-card-icon { font-size: 1.5rem; line-height: 1; margin-bottom: 0.1rem; }
+.cta-card-title {
   font-family: var(--font-d);
   font-size: 1.15rem;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.04em;
   color: var(--ink);
-  margin: 0 0 0.5rem 0;
-  line-height: 1.2;
 }
-.dl-card .meta {
-  font-size: 0.85rem;
+.cta-card-desc {
+  font-size: 0.8rem;
   color: var(--muted);
-  margin: 0 0 1rem 0;
-  line-height: 1.55;
+  line-height: 1.5;
+  flex: 1;
 }
-.dl-card .arrow {
-  color: var(--blue-lt);
-  font-weight: 600;
-  font-size: 0.9rem;
+.dl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.75rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: 7px;
   font-family: var(--font-b);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: opacity 0.15s, transform 0.1s;
+  cursor: pointer;
+  border: none;
+  width: fit-content;
 }
-.dl-card .arrow::after { content: " →"; transition: transform 0.15s ease; display: inline-block; }
-.dl-card:hover .arrow::after { transform: translateX(4px); }
-.dl-card:hover .arrow { color: var(--gold-lt); }
+.dl-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+.dl-btn:active { transform: translateY(0); }
+.dl-btn.blue {
+  background: var(--blue);
+  color: var(--ink);
+  box-shadow: 0 3px 14px rgba(0,74,173,0.35);
+}
+.dl-btn.gold {
+  background: var(--gold);
+  color: #0D0D0F;
+  box-shadow: 0 3px 14px rgba(212,168,39,0.35);
+}
+.cta-trust {
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-align: center;
+  letter-spacing: 0.03em;
+  opacity: 0.75;
+  margin-top: 1.25rem;
+}
+.cta-trust span { color: var(--blue-lt); font-weight: 600; }
+
+/* ---------- Divider ---------- */
+.divider { height: 1px; background: var(--border); margin: 2rem 0; }
 
 /* ---------- Footer ---------- */
-footer {
+.footer {
+  padding-top: 1.5rem;
   border-top: 1px solid var(--border);
-  margin-top: 4rem;
-  padding: 1.5rem 0 3rem;
-}
-footer .wrap {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -516,7 +565,7 @@ footer .wrap {
   body { font-size: 11pt; color: #000; background: #fff; }
   body::before, body::after { display: none; }
   a { color: #000; text-decoration: none; }
-  .part, .reply, .dl-card { border-color: #ccc; }
+  .part, .reply, .cta-card { border-color: #ccc; }
 }
 </style>
 </head>
@@ -638,55 +687,73 @@ footer .wrap {
 
 <section>
   <div class="wrap">
-    <div class="section-label">Take it with you</div>
-    <h2>Print it. Pin it. Use it.</h2>
-    <p>Four downloads. No email gate. No follow-up sequence.</p>
+    <div class="cta-section">
+      <p class="cta-eyebrow">From EBFC AI · For You</p>
+      <h2 class="cta-heading">Print it. Pin it. Use it.</h2>
+      <p class="cta-sub">Four downloads. No email gate. No account. Print the field guide and pin it to your trailer wall.</p>
 
-    <div class="downloads">
-      <a class="dl-card" href="/better-promises/Reliable_Promises_Field_Guide.pdf" download>
-        <span class="icon" aria-hidden="true">📋</span>
-        <div class="kind">PDF · 1 page</div>
-        <div class="title">Reliable Promises Field Guide</div>
-        <p class="meta">The 4-part structure, the 5 replies, the checklist, the recovery script — all on one printable page.</p>
-        <span class="arrow">Download</span>
-      </a>
-      <a class="dl-card" href="/better-promises/Building-High-Performance-Team-Culture.png" download>
-        <span class="icon" aria-hidden="true">🏗</span>
-        <div class="kind">PNG · Infographic</div>
-        <div class="title">Building High-Performance Team Culture</div>
-        <p class="meta">The Tuckman model, the Aristotle Project's five dynamics, and the path from forming to performing.</p>
-        <span class="arrow">Download</span>
-      </a>
-      <a class="dl-card" href="/better-promises/Culture-Outperforms-Strategy-Infographic.png" download>
-        <span class="icon" aria-hidden="true">📈</span>
-        <div class="kind">PNG · Infographic</div>
-        <div class="title">Culture Outperforms Strategy</div>
-        <p class="meta">Why culture is the differentiator. 74% strategy / 4% culture — and what to do about it.</p>
-        <span class="arrow">Download</span>
-      </a>
-      <a class="dl-card" href="/better-promises/LCI_Accountability_Reliable_Promises_MASTER.pdf" download>
-        <span class="icon" aria-hidden="true">📑</span>
-        <div class="kind">PDF · Full Deck</div>
-        <div class="title">LCI Master Presentation</div>
-        <p class="meta">The complete 23-slide deck from the session — 4-part promise, 5 replies, recovery script, exercises, and infographics.</p>
-        <span class="arrow">Download</span>
-      </a>
+      <div class="cta-cards">
+
+        <div class="cta-card featured">
+          <div class="cta-card-icon">📋</div>
+          <div class="cta-card-title">Reliable Promises Field Guide</div>
+          <div class="cta-card-desc">The 4-part structure, the 5 replies, the checklist, the recovery script — all on one printable page.</div>
+          <a class="dl-btn gold" href="/better-promises/Reliable_Promises_Field_Guide.pdf" download="Reliable_Promises_Field_Guide.pdf">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 1v8M3 6.5l3.5 3.5 3.5-3.5"/><path d="M1 11h11"/></svg>
+            Download Field Guide
+          </a>
+        </div>
+
+        <div class="cta-card">
+          <div class="cta-card-icon">🏗</div>
+          <div class="cta-card-title">Building High-Performance Team Culture</div>
+          <div class="cta-card-desc">The Tuckman model, the Aristotle Project's five dynamics, and the path from forming to performing.</div>
+          <a class="dl-btn blue" href="/better-promises/Building-High-Performance-Team-Culture.png" download="Building-High-Performance-Team-Culture.png">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 1v8M3 6.5l3.5 3.5 3.5-3.5"/><path d="M1 11h11"/></svg>
+            Download Infographic
+          </a>
+        </div>
+
+        <div class="cta-card">
+          <div class="cta-card-icon">📈</div>
+          <div class="cta-card-title">Culture Outperforms Strategy</div>
+          <div class="cta-card-desc">Why culture is the differentiator. 74% strategy / 4% culture — and what to do about it.</div>
+          <a class="dl-btn blue" href="/better-promises/Culture-Outperforms-Strategy-Infographic.png" download="Culture-Outperforms-Strategy-Infographic.png">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 1v8M3 6.5l3.5 3.5 3.5-3.5"/><path d="M1 11h11"/></svg>
+            Download Infographic
+          </a>
+        </div>
+
+        <div class="cta-card">
+          <div class="cta-card-icon">📑</div>
+          <div class="cta-card-title">LCI Master Presentation</div>
+          <div class="cta-card-desc">The complete 23-slide deck from the session — 4-part promise, 5 replies, recovery script, exercises, and infographics.</div>
+          <a class="dl-btn blue" href="/better-promises/LCI_Accountability_Reliable_Promises_MASTER.pdf" download="LCI_Accountability_Reliable_Promises_MASTER.pdf">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 1v8M3 6.5l3.5 3.5 3.5-3.5"/><path d="M1 11h11"/></svg>
+            Download Full Deck
+          </a>
+        </div>
+
+      </div>
+
+      <p class="cta-trust">No email gate. No follow-up sequence. Just the files. &nbsp;·&nbsp; <span>EBFC AI</span> &nbsp;·&nbsp; ebfc.ai</p>
     </div>
   </div>
 </section>
 
-<footer>
-  <div class="wrap">
-    <div class="footer-contact">
-      <strong style="color:var(--ink)">Felipe Engineer-Manriquez</strong><br>
-      Chief Engineer · EBFC AI<br>
-      <a href="mailto:felipe@ebfc.ai">felipe@ebfc.ai</a> &nbsp;·&nbsp;
-      <a href="https://www.ebfc.ai">ebfc.ai</a>
-    </div>
-    <div class="footer-follow">
-      Connect with me at
-      <a href="https://felipe.engineer/" target="_blank" style="color:var(--gold-lt);text-decoration:none;"><span class="handle">felipe.engineer</span></a>
-    </div>
+<div class="divider"></div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-contact">
+    <strong style="color:var(--ink)">Felipe Engineer-Manriquez</strong><br>
+    Chief Engineer · EBFC AI<br>
+    <a href="mailto:felipe@ebfc.ai">felipe@ebfc.ai</a> &nbsp;·&nbsp;
+    <a href="https://www.ebfc.ai" target="_blank">ebfc.ai</a>
+  </div>
+  <div class="footer-follow">
+    Connect with me at
+    <a href="https://felipe.engineer/" target="_blank" style="color:var(--gold-lt);text-decoration:none;"><span class="handle">felipe.engineer</span></a>
   </div>
 </footer>
 
