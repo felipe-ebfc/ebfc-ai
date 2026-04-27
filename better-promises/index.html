@@ -472,9 +472,27 @@ footer {
   padding: 2.5rem 0 3rem;
   font-size: 0.95rem;
   color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 footer p { max-width: none; margin: 0 0 0.5rem 0; }
 footer .credits strong { color: var(--ink); font-weight: 700; }
+footer .footer-follow {
+  text-align: right;
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+footer .footer-follow .handle {
+  font-family: var(--font-d);
+  font-size: 1.2rem;
+  color: var(--gold-lt);
+  letter-spacing: 0.06em;
+  display: block;
+}
 footer .free {
   margin-top: 1.5rem;
   font-style: italic;
@@ -626,21 +644,21 @@ footer a:hover { color: var(--blue-lt); }
     <p>Three downloads. No email gate. No follow-up sequence.</p>
 
     <div class="downloads">
-      <a class="dl-card" href="Reliable_Promises_Field_Guide.pdf" download>
+      <a class="dl-card" href="/better-promises/Reliable_Promises_Field_Guide.pdf" download>
         <span class="icon" aria-hidden="true">📋</span>
         <div class="kind">PDF · 1 page</div>
         <div class="title">Reliable Promises Field Guide</div>
         <p class="meta">The 4-part structure, the 5 replies, the checklist, the recovery script — all on one printable page.</p>
         <span class="arrow">Download</span>
       </a>
-      <a class="dl-card" href="Building-High-Performance-Team-Culture.png" download>
+      <a class="dl-card" href="/better-promises/Building-High-Performance-Team-Culture.png" download>
         <span class="icon" aria-hidden="true">🏗</span>
         <div class="kind">PNG · Infographic</div>
         <div class="title">Building High-Performance Team Culture</div>
         <p class="meta">The Tuckman model, the Aristotle Project's five dynamics, and the path from forming to performing.</p>
         <span class="arrow">Download</span>
       </a>
-      <a class="dl-card" href="Culture-Outperforms-Strategy-Infographic.png" download>
+      <a class="dl-card" href="/better-promises/Culture-Outperforms-Strategy-Infographic.png" download>
         <span class="icon" aria-hidden="true">📈</span>
         <div class="kind">PNG · Infographic</div>
         <div class="title">Culture Outperforms Strategy</div>
@@ -654,10 +672,13 @@ footer a:hover { color: var(--blue-lt); }
 <footer>
   <div class="wrap">
     <div class="credits">
-      <p><strong>Tom Martin</strong> · Owner / Operator</p>
-      <p><strong>Felipe Engineer-Manriquez</strong> · Chief Engineer, EBFC AI · <a href="https://www.ebfc.ai">ebfc.ai</a></p>
-      <p>Built for the Lean Construction Institute event on Accountability &amp; Reliable Promises.</p>
-      <p class="free">No email gate. No follow-up sequence. Pin the field guide to your trailer wall.</p>
+      <p><strong>Felipe Engineer-Manriquez</strong><br>
+      Chief Engineer · EBFC AI<br>
+      <a href="mailto:felipe@ebfc.ai">felipe@ebfc.ai</a> · <a href="https://www.ebfc.ai">ebfc.ai</a></p>
+    </div>
+    <div class="footer-follow">
+      Connect with me at
+      <a href="https://felipe.engineer/" style="color:var(--gold-lt);text-decoration:none;"><span class="handle">felipe.engineer</span></a>
     </div>
   </div>
 </footer>
