@@ -1,0 +1,666 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Better Promises · LCI Accountability & Reliable Promises</title>
+<meta name="description" content="The take-home page for the LCI session on accountability and reliable promises. The 4-part structure, the 5 honest replies, the recovery script — and the printable field guide.">
+<meta property="og:title" content="Better Promises · LCI Accountability & Reliable Promises">
+<meta property="og:description" content="Promises are the unit of progress on your project. The field guide, the infographics, the framework — printable, scannable, portable.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.ebfc.ai/better-promises">
+<meta property="og:image" content="https://www.ebfc.ai/og-image.png">
+<meta property="og:site_name" content="EBFC AI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Better Promises · LCI Accountability & Reliable Promises">
+<meta name="twitter:description" content="Promises are the unit of progress. The framework, the field guide, the infographics.">
+<meta name="twitter:image" content="https://www.ebfc.ai/og-image.png">
+<link rel="canonical" href="https://www.ebfc.ai/better-promises">
+<link rel="icon" href="/og-image.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+/* ---------- Brand tokens (ebfc.ai + Construction Scrum brand kit) ---------- */
+:root {
+  /* Primary palette */
+  --blue:        #004AAD;
+  --blue-lt:     #1E6DD9;
+  --blue-deep:   #003580;
+  --midnight:    #001A3D;
+  --gold:        #D4A827;
+  --gold-lt:     #F0C94A;
+
+  /* Surface system (matching /playbook dark theme) */
+  --bg:          #0D0D0F;
+  --surface:     #13131A;
+  --border:      #1E1E2A;
+
+  /* Semantic */
+  --good:        #15803D;
+  --warn:        #B45309;
+  --bad:         #B91C1C;
+  --accent:      #1E6DD9;
+  --accent-deep: #003580;
+  --purple:      #6A4C93;
+
+  /* Text */
+  --ink:         #F5F8FF;
+  --ink-soft:    #CBD5E1;
+  --body:        #CBD5E1;
+  --muted:       #6B7FA3;
+
+  /* Typography */
+  --font-d:      'Bebas Neue', sans-serif;
+  --font-b:      'Space Grotesk', 'Source Sans 3', sans-serif;
+  --font-body:   'Source Sans 3', 'Space Grotesk', sans-serif;
+  --font-mono:   'JetBrains Mono', monospace;
+
+  /* Layout */
+  --measure:     38rem;
+  --container:   64rem;
+  --radius:      12px;
+  --radius-lg:   18px;
+}
+
+/* ---------- Reset / base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--body);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── Grid texture (matching ebfc.ai) ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(0,74,173,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,74,173,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+/* ── Top glow ── */
+body::after {
+  content: '';
+  position: fixed;
+  top: -20%; left: 50%; transform: translateX(-50%);
+  width: 80vw; height: 60vh;
+  background: radial-gradient(ellipse at center, rgba(0,74,173,0.18) 0%, transparent 70%);
+  z-index: 0; pointer-events: none;
+}
+
+h1, h2, h3, h4 {
+  color: var(--ink);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin: 0 0 0.5rem 0;
+}
+p { margin: 0 0 1rem 0; max-width: var(--measure); }
+a { color: var(--blue-lt); text-decoration: underline; text-underline-offset: 3px; }
+a:hover { color: var(--gold-lt); }
+strong { color: var(--ink); }
+hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 4rem 0;
+}
+
+/* ---------- Layout ---------- */
+.wrap {
+  position: relative;
+  z-index: 1;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+section { padding: 3rem 0; }
+@media (min-width: 768px) {
+  section { padding: 4rem 0; }
+}
+
+/* ---------- Top bar ---------- */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+  border-bottom: 1px solid rgba(0,74,173,0.2);
+  backdrop-filter: blur(12px);
+  background: rgba(13,13,15,0.85);
+  padding: 1rem 0;
+  animation: fadeDown 0.6s ease both;
+}
+.topbar .wrap {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.topbar a {
+  color: var(--muted);
+  text-decoration: none;
+  font-family: var(--font-d);
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  transition: color 0.2s;
+}
+.topbar a:hover { color: var(--ink); }
+.topbar .brand {
+  font-family: var(--font-d);
+  font-size: 1.15rem;
+  letter-spacing: 0.12em;
+  color: var(--ink);
+}
+.topbar .brand span { color: var(--gold); }
+
+/* ---------- Hero ---------- */
+.hero {
+  padding: 7rem 0 2rem;
+}
+@media (min-width: 768px) {
+  .hero { padding: 8rem 0 3rem; }
+}
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 1.25rem;
+  animation: fadeUp 0.7s 0.1s ease both;
+}
+.hero h1 {
+  font-family: var(--font-d);
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  line-height: 0.95;
+  letter-spacing: 0.03em;
+  margin-bottom: 1.25rem;
+  animation: fadeUp 0.8s 0.2s ease both;
+}
+.hero h1 .accent { color: var(--blue-lt); }
+.hero .lede {
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  color: var(--ink-soft);
+  max-width: 38rem;
+  animation: fadeUp 0.8s 0.35s ease both;
+}
+.hero .byline {
+  margin-top: 2rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+  animation: fadeUp 0.8s 0.45s ease both;
+}
+.hero .byline strong { color: var(--ink); }
+
+/* ---------- Insight callout ---------- */
+.insight {
+  border-left: 4px solid var(--gold);
+  background: linear-gradient(135deg, rgba(212,168,39,0.06) 0%, rgba(0,74,173,0.08) 100%);
+  border-top: 1px solid rgba(212,168,39,0.2);
+  border-right: 1px solid rgba(212,168,39,0.2);
+  border-bottom: 1px solid rgba(212,168,39,0.2);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  margin: 0 0 2rem 0;
+}
+.insight p {
+  font-family: var(--font-d);
+  font-size: clamp(1.4rem, 3vw, 1.85rem);
+  letter-spacing: 0.03em;
+  color: var(--ink);
+  line-height: 1.2;
+  margin: 0;
+  max-width: 36rem;
+}
+.insight p em {
+  color: var(--gold-lt);
+  font-style: normal;
+}
+
+/* ---------- Section heading ---------- */
+.section-label {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--blue-lt);
+  margin-bottom: 0.5rem;
+}
+h2 {
+  font-family: var(--font-d);
+  font-size: clamp(1.7rem, 4vw, 2.6rem);
+  letter-spacing: 0.04em;
+  margin-bottom: 1.25rem;
+}
+
+/* ---------- 4-part structure pills ---------- */
+.parts {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: 1fr;
+  margin: 1.5rem 0 1.25rem;
+}
+@media (min-width: 640px) { .parts { grid-template-columns: repeat(4, 1fr); } }
+.part {
+  background: linear-gradient(135deg, rgba(0,74,173,0.15) 0%, rgba(0,74,173,0.25) 100%);
+  border: 1px solid rgba(30,109,217,0.3);
+  color: var(--ink);
+  padding: 1.25rem 1rem 1rem;
+  border-radius: var(--radius);
+  text-align: center;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.part:hover {
+  border-color: var(--blue-lt);
+  transform: translateY(-2px);
+}
+.part .word {
+  font-family: var(--font-d);
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+.part .label {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--blue-lt);
+  font-weight: 700;
+}
+.example {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+.example .tag {
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+/* ---------- Replies list ---------- */
+.replies {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  display: grid;
+  gap: 0.6rem;
+}
+.reply {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  transition: border-color 0.2s;
+}
+.reply:hover { border-color: rgba(30,109,217,0.4); }
+.reply .tag {
+  font-family: var(--font-d);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 0.35rem 0;
+  border-radius: 999px;
+  letter-spacing: 0.06em;
+  color: #FFF;
+}
+.reply .tag.yes { background: var(--good); }
+.reply .tag.no { background: var(--bad); }
+.reply .tag.ifx { background: var(--warn); }
+.reply .tag.info { background: var(--blue); }
+.reply .tag.counter { background: var(--purple); }
+.reply .body { color: var(--body); }
+.reply .body strong { display: block; color: var(--ink); font-weight: 600; }
+@media (max-width: 480px) {
+  .reply { grid-template-columns: 1fr; }
+}
+
+/* ---------- Checklist ---------- */
+.checklist {
+  list-style: none;
+  padding: 0;
+  margin: 1.25rem 0 0;
+  display: grid;
+  gap: 0.5rem;
+  max-width: 40rem;
+}
+.checklist li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.85rem;
+  align-items: start;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--body);
+  line-height: 1.6;
+}
+.checklist li::before {
+  content: "✓";
+  font-weight: 800;
+  color: var(--blue-lt);
+  font-size: 1.15rem;
+  line-height: 1.4;
+}
+
+/* ---------- Recovery script ---------- */
+.recovery {
+  background: linear-gradient(135deg, rgba(0,74,173,0.08) 0%, rgba(212,168,39,0.04) 100%);
+  border: 1px solid rgba(30,109,217,0.25);
+  border-left: 4px solid var(--gold);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.75rem;
+  margin: 1.25rem 0 0;
+  max-width: 42rem;
+}
+.recovery ol {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: grid;
+  gap: 0.85rem;
+}
+.recovery li { color: var(--body); font-size: 1.02rem; line-height: 1.6; }
+.recovery li strong { color: var(--ink); }
+.recovery li em { color: var(--gold-lt); font-style: normal; font-weight: 700; }
+
+/* ---------- Words we don't say ---------- */
+.words {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.words li {
+  border: 1px solid var(--bad);
+  color: #FCA5A5;
+  background: rgba(185,28,28,0.08);
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: line-through;
+  text-decoration-thickness: 1.5px;
+  text-decoration-color: rgba(248,113,113,0.7);
+}
+
+/* ---------- Downloads ---------- */
+.downloads {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+  margin: 1.5rem 0 0;
+}
+@media (min-width: 768px) {
+  .downloads { grid-template-columns: repeat(3, 1fr); }
+}
+.dl-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.dl-card:hover {
+  border-color: var(--blue-lt);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(30,109,217,0.15);
+}
+.dl-card .icon {
+  font-size: 1.75rem;
+  display: block;
+  margin-bottom: 0.75rem;
+  line-height: 1;
+}
+.dl-card .kind {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+}
+.dl-card .title {
+  font-family: var(--font-d);
+  font-size: 1.15rem;
+  letter-spacing: 0.03em;
+  color: var(--ink);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
+}
+.dl-card .meta {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0 0 1rem 0;
+  line-height: 1.55;
+}
+.dl-card .arrow {
+  color: var(--blue-lt);
+  font-weight: 600;
+  font-size: 0.9rem;
+  font-family: var(--font-b);
+}
+.dl-card .arrow::after { content: " →"; transition: transform 0.15s ease; display: inline-block; }
+.dl-card:hover .arrow::after { transform: translateX(4px); }
+.dl-card:hover .arrow { color: var(--gold-lt); }
+
+/* ---------- Footer ---------- */
+footer {
+  border-top: 1px solid var(--border);
+  margin-top: 4rem;
+  padding: 2.5rem 0 3rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+footer p { max-width: none; margin: 0 0 0.5rem 0; }
+footer .credits strong { color: var(--ink); font-weight: 700; }
+footer .free {
+  margin-top: 1.5rem;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+footer a { color: var(--gold-lt); text-decoration: none; }
+footer a:hover { color: var(--blue-lt); }
+
+/* ---------- Animations ---------- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Print ---------- */
+@media print {
+  .topbar { display: none; }
+  body { font-size: 11pt; color: #000; background: #fff; }
+  body::before, body::after { display: none; }
+  a { color: #000; text-decoration: none; }
+  .part, .reply, .dl-card { border-color: #ccc; }
+}
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="topbar">
+  <div class="wrap">
+    <a href="https://www.ebfc.ai">← ebfc.ai</a>
+    <span class="brand">EBFC <span>·</span> Better Promises</span>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">LCI · Accountability &amp; Reliable Promises</div>
+    <h1>Better <span class="accent">Promises.</span></h1>
+    <p class="lede">Promises are the unit of progress on your project. When they're vague, work slips. When they're specific, trust compounds. This is what we used last night — printable, scannable, portable.</p>
+    <p class="byline">Hosted by <strong>Tom Martin</strong> &amp; <strong>Felipe Engineer-Manriquez</strong> · Lean Construction Institute</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="insight">
+      <p>A statement becomes a promise when it is <em>listened to</em> as a promise. So make it specific enough to land.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-label">The framework</div>
+    <h2>The 4-part structure of a promise</h2>
+    <p>Who does what, for whom, by when. Anything missing turns a promise into a wish.</p>
+
+    <div class="parts" role="list">
+      <div class="part" role="listitem"><span class="word">I</span><span class="label">performer</span></div>
+      <div class="part" role="listitem"><span class="word">will deliver X</span><span class="label">deliverable</span></div>
+      <div class="part" role="listitem"><span class="word">for you</span><span class="label">customer</span></div>
+      <div class="part" role="listitem"><span class="word">by [time]</span><span class="label">specific moment</span></div>
+    </div>
+
+    <div class="example">
+      <span class="tag">Example</span>
+      "I (architect) will deliver the permit set for the outpatient clinic to you, by 3 PM Friday."
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-label">When asked to commit</div>
+    <h2>Five honest replies</h2>
+    <p>These are your only honest options. Anything outside them — "maybe," "I'll try," "should be fine" — is not a reply.</p>
+
+    <ul class="replies">
+      <li class="reply"><span class="tag yes">YES</span><span class="body"><strong>I can complete that.</strong> Conditions are clear, time is blocked, capacity is real.</span></li>
+      <li class="reply"><span class="tag no">NO</span><span class="body"><strong>I can't.</strong> Better than a soft yes that breaks later.</span></li>
+      <li class="reply"><span class="tag ifx">YES, IF…</span><span class="body"><strong>I can — if [condition] is met.</strong> Surfaces dependencies before they bite.</span></li>
+      <li class="reply"><span class="tag info">NEED INFO</span><span class="body"><strong>I'll commit once I have [X] by [when].</strong> The ask itself is a promise.</span></li>
+      <li class="reply"><span class="tag counter">COUNTEROFFER</span><span class="body"><strong>I can't do that — but I can do this.</strong> Keeps the work moving.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-label">Before you say YES</div>
+    <h2>Five elements of a reliable promise</h2>
+    <p>Run this check in your head before you commit. If any answer is no, your reply isn't yes — it's "yes, if."</p>
+
+    <ul class="checklist">
+      <li>Conditions of satisfaction are clear — we both know what "done" looks like.</li>
+      <li>I'm competent — I have the skill and the resources.</li>
+      <li>I've blocked the time on my calendar. Estimated <em>and</em> scheduled.</li>
+      <li>I'm sincere — I actually intend to do it.</li>
+      <li>I'll own the recovery if I miss.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-label">When you miss</div>
+    <h2>The recovery script</h2>
+    <p>Trust isn't built by perfect promises. It's built by how we recover when one slips.</p>
+
+    <div class="recovery">
+      <ol>
+        <li><strong>"I missed my commitment because</strong> <em>[reason — no excuses]</em><strong>."</strong></li>
+        <li><strong>"My new commitment is</strong> <em>[what]</em> <strong>by</strong> <em>[when]</em><strong>."</strong></li>
+        <li><strong>"What I need from you to keep this one is</strong> <em>[ask]</em><strong>."</strong></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-label">Listen for the verb</div>
+    <h2>Words we don't say</h2>
+    <p>If you hear any of these in response to a promise request, you don't have a promise. You have a maybe. Push for one of the five honest replies above.</p>
+
+    <ul class="words">
+      <li>I'll try</li>
+      <li>Should be fine</li>
+      <li>We'll see</li>
+      <li>Soon</li>
+      <li>Hopefully</li>
+      <li>ASAP</li>
+      <li>Ballpark</li>
+      <li>End-of-week-ish</li>
+      <li>Let me see what I can do</li>
+      <li>If I get to it</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-label">Take it with you</div>
+    <h2>Print it. Pin it. Use it.</h2>
+    <p>Three downloads. No email gate. No follow-up sequence.</p>
+
+    <div class="downloads">
+      <a class="dl-card" href="Reliable_Promises_Field_Guide.pdf" download>
+        <span class="icon" aria-hidden="true">📋</span>
+        <div class="kind">PDF · 1 page</div>
+        <div class="title">Reliable Promises Field Guide</div>
+        <p class="meta">The 4-part structure, the 5 replies, the checklist, the recovery script — all on one printable page.</p>
+        <span class="arrow">Download</span>
+      </a>
+      <a class="dl-card" href="Building-High-Performance-Team-Culture.png" download>
+        <span class="icon" aria-hidden="true">🏗</span>
+        <div class="kind">PNG · Infographic</div>
+        <div class="title">Building High-Performance Team Culture</div>
+        <p class="meta">The Tuckman model, the Aristotle Project's five dynamics, and the path from forming to performing.</p>
+        <span class="arrow">Download</span>
+      </a>
+      <a class="dl-card" href="Culture-Outperforms-Strategy-Infographic.png" download>
+        <span class="icon" aria-hidden="true">📈</span>
+        <div class="kind">PNG · Infographic</div>
+        <div class="title">Culture Outperforms Strategy</div>
+        <p class="meta">Why culture is the differentiator. 74% strategy / 4% culture — and what to do about it.</p>
+        <span class="arrow">Download</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="credits">
+      <p><strong>Tom Martin</strong> · Owner / Operator</p>
+      <p><strong>Felipe Engineer-Manriquez</strong> · Chief Engineer, EBFC AI · <a href="https://www.ebfc.ai">ebfc.ai</a></p>
+      <p>Built for the Lean Construction Institute event on Accountability &amp; Reliable Promises.</p>
+      <p class="free">No email gate. No follow-up sequence. Pin the field guide to your trailer wall.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
