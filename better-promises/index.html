@@ -562,6 +562,166 @@ h2 {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* ---------- Gallery ---------- */
+.gallery-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  margin: 1.5rem 0 0;
+}
+.gallery-item {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 4/3;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.gallery-item:hover {
+  transform: translateY(-3px);
+  border-color: rgba(30,109,217,0.5);
+  box-shadow: 0 12px 32px rgba(0,74,173,0.15);
+}
+.gallery-item:focus-visible {
+  outline: 2px solid var(--blue-lt);
+  outline-offset: 2px;
+}
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,26,61,0.85) 0%, transparent 55%);
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem 1.1rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+.gallery-caption {
+  color: var(--ink);
+  font-family: var(--font-b);
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.gallery-item.video-item::after {
+  content: "▶";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px;
+  height: 56px;
+  background: rgba(0,74,173,0.8);
+  border: 3px solid var(--ink);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  font-size: 1.3rem;
+  padding-left: 3px;
+  pointer-events: none;
+}
+
+/* ---------- Lightbox ---------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0,26,61,0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+.lightbox.open {
+  opacity: 1;
+  visibility: visible;
+}
+.lightbox-inner {
+  position: relative;
+  max-width: 90vw;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.lightbox-inner img {
+  max-width: 90vw;
+  max-height: 80vh;
+  border-radius: var(--radius);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+  object-fit: contain;
+}
+.lightbox-inner iframe {
+  max-width: 90vw;
+  width: 800px;
+  aspect-ratio: 16/9;
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+}
+.lightbox-caption {
+  color: rgba(245,248,255,0.85);
+  font-size: 0.85rem;
+  margin-top: 1rem;
+  text-align: center;
+  font-family: var(--font-b);
+}
+.lightbox-close {
+  position: absolute;
+  top: -48px;
+  right: 0;
+  background: none;
+  border: none;
+  color: rgba(245,248,255,0.6);
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  line-height: 1;
+  transition: color 0.15s ease;
+}
+.lightbox-close:hover { color: var(--gold-lt); }
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(30,109,217,0.25);
+  border: 1px solid rgba(30,109,217,0.4);
+  color: var(--ink);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  transition: background 0.15s ease, border-color 0.15s ease;
+  line-height: 1;
+}
+.lightbox-nav:hover { background: rgba(30,109,217,0.5); border-color: var(--blue-lt); }
+.lightbox-nav.prev { left: -60px; }
+.lightbox-nav.next { right: -60px; }
+@media (max-width: 768px) {
+  .lightbox-nav.prev { left: 0.5rem; }
+  .lightbox-nav.next { right: 0.5rem; }
+  .lightbox-inner iframe { width: 96vw; }
+  .lightbox-inner img { max-width: 96vw; max-height: 70vh; }
+  .lightbox-close { top: -40px; }
+}
+
 /* ---------- Print ---------- */
 @media print {
   .topbar { display: none; }
@@ -687,6 +847,122 @@ h2 {
     </ul>
   </div>
 </section>
+
+<section>
+  <div class="wrap">
+    <div class="section-label">From the event</div>
+    <h2>Accountability in action</h2>
+    <p>Moments from tonight's session — real conversations, real promises, real practice.</p>
+
+    <div class="gallery-grid">
+      <div class="gallery-item" onclick="openLightbox(0)" role="button" tabindex="0" aria-label="View event photo">
+        <img src="thumb_web_IMG_3266.JPG" alt="LCI Accountability & Reliable Promises event" loading="lazy">
+        <div class="gallery-overlay"><span class="gallery-caption">Tom &amp; Felipe opening the session</span></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(1)" role="button" tabindex="0" aria-label="View event photo">
+        <img src="thumb_web_IMG_3267.JPG" alt="Pairs practicing reliable promises" loading="lazy">
+        <div class="gallery-overlay"><span class="gallery-caption">Building promises in pairs</span></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(2)" role="button" tabindex="0" aria-label="View event photo">
+        <img src="thumb_web_IMG_3268.JPG" alt="Group debrief and discussion" loading="lazy">
+        <div class="gallery-overlay"><span class="gallery-caption">Whole-room debrief</span></div>
+      </div>
+
+      <div class="gallery-item video-item" onclick="openLightbox(3)" role="button" tabindex="0" aria-label="Watch Owning Team Culture video">
+        <img src="https://img.youtube.com/vi/C23NCqLMoUA/hqdefault.jpg" alt="Owning Team Culture video" loading="lazy">
+        <div class="gallery-overlay"><span class="gallery-caption">Owning Team Culture</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox overlay -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxOnBg(event)" role="dialog" aria-label="Image viewer">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+    <button class="lightbox-nav prev" onclick="navigateLightbox(-1)" aria-label="Previous">&#8249;</button>
+    <button class="lightbox-nav next" onclick="navigateLightbox(1)" aria-label="Next">&#8250;</button>
+    <div id="lightbox-content"></div>
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+</div>
+
+<script>
+const gallery = [
+  { type: 'image', src: 'web_IMG_3266.JPG', caption: 'Tom & Felipe opening the session' },
+  { type: 'image', src: 'web_IMG_3267.JPG', caption: 'Building promises in pairs' },
+  { type: 'image', src: 'web_IMG_3268.JPG', caption: 'Whole-room debrief' },
+  { type: 'video', src: 'https://www.youtube.com/embed/C23NCqLMoUA?si=qtRkbrjRGbfvvxu5&autoplay=1', caption: 'Owning Team Culture' }
+];
+
+let current = -1;
+const lightbox = document.getElementById('lightbox');
+const lbContent = document.getElementById('lightbox-content');
+const lbCaption = document.getElementById('lightbox-caption');
+
+function openLightbox(index) {
+  current = index;
+  renderSlide();
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  document.body.style.overflow = '';
+  lbContent.innerHTML = '';
+  current = -1;
+}
+
+function closeLightboxOnBg(e) {
+  if (e.target === lightbox) closeLightbox();
+}
+
+function navigateLightbox(dir) {
+  current = (current + dir + gallery.length) % gallery.length;
+  renderSlide();
+}
+
+function renderSlide() {
+  const item = gallery[current];
+  lbContent.innerHTML = '';
+  if (item.type === 'image') {
+    const img = document.createElement('img');
+    img.src = item.src;
+    img.alt = item.caption;
+    lbContent.appendChild(img);
+  } else if (item.type === 'video') {
+    const iframe = document.createElement('iframe');
+    iframe.src = item.src;
+    iframe.width = '800';
+    iframe.height = '450';
+    iframe.frameBorder = '0';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+    iframe.allowFullscreen = true;
+    lbContent.appendChild(iframe);
+  }
+  lbCaption.textContent = item.caption;
+}
+
+document.addEventListener('keydown', (e) => {
+  if (current < 0) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') navigateLightbox(-1);
+  if (e.key === 'ArrowRight') navigateLightbox(1);
+});
+
+document.querySelectorAll('.gallery-item').forEach(el => {
+  el.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      el.click();
+    }
+  });
+});
+</script>
 
 <section>
   <div class="wrap">
